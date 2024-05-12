@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="main.js" type="module" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" type="module" defer></script>
 </head>
 <body>
-    <!-- <my-frame uri="spotify:album:3d026f76adb5928f0e59"></my-frame> -->
+    <main class="container">
+        <aside class="left">
+            <section>
+                <h1 class="title">Discover New Music</h1>
+                <div class="search-header">
+                    <input type="text" class="search-input" placeholder="Search">
+                    <button class="search-button"></button>
+                </div>
+            </section>
+            <div class="content">
+                <h3 class="topChart">Top Chart</h3>
+                <div class="albumes" id="listAlbum">
+                
+                </div>
+            </div>
+        </aside>
+        
+    </main>
+    <my-frame uri="spotify:album:3d026f76adb5928f0e59"></my-frame>
 </body>
 </html>
