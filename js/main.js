@@ -21,12 +21,13 @@ customElements.define("my-frame",myframe)
 
 const listAlbum = document.querySelector("#listAlbum")
 
-let url = 'https://spotify23.p.rapidapi.com/search/?q=%3CREQUIRED%3E&type=albums&offset=0&limit=10&numberOfTopResults=5';
+let url = 'https://spotify23.p.rapidapi.com/search/?type=multi&offset=0&limit=10&numberOfTopResults=5';
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '825f52aba2mshe0fbee31a795561p1004bbjsn81f444926bbe',
-		'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
+		'X-RapidAPI-Key': '344560f223msh07d868d593e096bp1a2c08jsnaa43079d40fd',
+		'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
+        'Content-Type': 'application/json'
 	}
 };
 
@@ -51,24 +52,24 @@ try {
         let nombreArtista = va[i].data.artists.items[i]?.profile.name ?? va[i].data.artists.items[0]?.profile.name;
         let fecha = va[i].data.date.year
         
-        // const mostrarAlbum = async() => {
-        //     const div = document.createElement("div");
-        //     div.classList.add("album")
-        //     div.innerHTML = `
-        //     <div class="album">
-        //         <div class="album_order">
-        //             <div class="imagen_album">
-        //                 <img src="${imagen}" alt="" class="portada">
-        //             </div>
-        //             <div class="info_album">
-        //                 <h3>${nombre}</h3>
-        //                 <p>${nombreArtista}</p>
-        //                 <p>${fecha}</p>
-        //             </div>
-        //         </div>
-        //     </div>`;
-        //     listAlbum.append(div);
-        // }
+        const mostrarAlbum = async() => {
+            const div = document.createElement("div");
+            div.classList.add("album")
+            div.innerHTML = `
+            <div class="album">
+                <div class="album_order">
+                    <div class="imagen_album">
+                        <img src="${imagen}" alt="" class="portada">
+                    </div>
+                    <div class="info_album">
+                        <h3>${nombre}</h3>
+                        <p>${nombreArtista}</p>
+                        <p>${fecha}</p>
+                    </div>
+                </div>
+            </div>`;
+            listAlbum.append(div);
+        }
         if(imagen){
         }
     }
