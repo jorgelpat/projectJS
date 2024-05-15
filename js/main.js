@@ -23,9 +23,38 @@ class myframe extends HTMLElement{
         this.id = id;
     }
 }
-customElements.define("my-frame",myframe)
+customElements.define("my-frame",myframe);
 
-const listAlbum = document.querySelector("#listAlbum")
+// let listAlbum = document.querySelector("#listAlbum");
+let searchInput = document.querySelector("#searchInput");
+let searchButton = document.querySelector("#searchButton");
+
+let codeAlbum = "%3CREQUIRED%3E";
+document.addEventListener('DOMContentLoaded',() =>{
+    verAlbum(codeAlbum);
+});
+
+// Se busca album con evento de escucha onclick
+searchButton.addEventListener('click',() =>{
+    const query = searchInput.value.trim();
+    if (query){
+        codeAlbum = query.replace(" ","%20");
+        verAlbum(codeAlbum);
+    };
+});
+
+// se busca con evento de escucha Enter
+searchInput.addEventListener('keypress',(e) =>{
+    if (e.key === 'Enter'){
+        const query = searchInput.value.trim();
+        if (query){
+            codeAlbum = query.replace(" ","%20");
+            verAlbum(codeAlbum);
+        };
+    };
+});
+
+
 
 let url = 'https://spotify23.p.rapidapi.com/search/?type=multi&offset=0&limit=10&numberOfTopResults=5';
 const options = {
