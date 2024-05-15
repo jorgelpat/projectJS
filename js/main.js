@@ -54,17 +54,25 @@ searchInput.addEventListener('keypress',(e) =>{
     };
 });
 
-
-
-let url = 'https://spotify23.p.rapidapi.com/search/?type=multi&offset=0&limit=10&numberOfTopResults=5';
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '344560f223msh07d868d593e096bp1a2c08jsnaa43079d40fd',
-		'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
-        'Content-Type': 'application/json'
-	}
+const verAlbum = async (codeAlbum) => {
+    let url = 'https://spotify23.p.rapidapi.com/search/?type=multi&offset=0&limit=10&numberOfTopResults=5';
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '344560f223msh07d868d593e096bp1a2c08jsnaa43079d40fd',
+            'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
+            // 'Content-Type': 'application/json'
+        }
+    };
+    
 };
+
+
+
+
+
+
+
 
 // try {
 // 	const response = await fetch(url, options);
