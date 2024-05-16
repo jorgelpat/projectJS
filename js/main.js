@@ -55,13 +55,13 @@ searchInput.addEventListener('keypress',(e) =>{
 });
 
 const verAlbum = async (codeAlbum) => {
-    let url = 'https://spotify23.p.rapidapi.com/search/?type=multi&offset=0&limit=10&numberOfTopResults=5';
+    let url = 'https://potify23.p.rapidapi.com/search/?type=multi&offset=0&limit=10&numberOfTopResults=5';
     const options = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': '344560f223msh07d868d593e096bp1a2c08jsnaa43079d40fd',
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
-            // 'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         }
     };
     try{
@@ -79,9 +79,25 @@ const verAlbum = async (codeAlbum) => {
             const fecha = albums[i].data.date.year;
             const uri = albums[i].data.uri;
 
-            const div = document.createElement("div");
-            div.classList.add("albumes");         // Buscar donde agregarlo
-            div.innerHTML = `
+            // const albumes = document.createElement("div");
+            // const elementoAlbumes = document.querySelector(".albumes")
+            // div.classList.add("albumes");         // Buscar donde agregarlo
+            // div.innerHTML = `
+            //     <div class="album_order" data-id="${uri}">
+            //         <div class="imagen_album">
+            //             <img src="${imagen}" alt="" class="portada">
+            //         </div>
+            //         <div class="info_album">
+            //             <h3>${nombre}</h3>
+            //             <p>${nombreArtista}</p>
+            //             <p>${fecha}</p>
+            //         </div>
+            //     </div>
+            // `;
+            // albumes.append(div);
+
+            const listaAlbum = document.createElement('div');
+            listaAlbum.innerHTML = `
                 <div class="album_order" data-id="${uri}">
                     <div class="imagen_album">
                         <img src="${imagen}" alt="" class="portada">
@@ -93,7 +109,9 @@ const verAlbum = async (codeAlbum) => {
                     </div>
                 </div>
             `;
-            listAlbum.append(div);
+            const elementAlbum = document.querySelector('.albumes')
+            elementAlbum.append(listaAlbum);
+
             div.querySelector('.album_order').addEventListener('click',()=>{
                 const frame = document.querySelector("my.frame");
                 frame.setAttribute("uri",uri);
@@ -104,21 +122,6 @@ const verAlbum = async (codeAlbum) => {
     }
     
 };
-
-
-
-
-
-
-
-
-// try {
-// 	const response = await fetch(url, options);
-// 	const result = await response.text();
-// 	console.log(result);
-// } catch (error) {
-// 	console.error(error);
-// }
 
 try {
 	const response = await fetch(url, options);
