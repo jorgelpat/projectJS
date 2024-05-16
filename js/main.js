@@ -19,8 +19,31 @@ class myframe extends HTMLElement{
         return ["uri"];
     }
     attributeChangedCallback(name,old,now){
-        let[nameUri, album, id] = now.split(":")
+        let[, , id] = now.split(":");
+        const uri = this.getAtribute("uri");
+        const type = uri.split(":")[1];
+        this.type = type;
         this.id = id;
+        this.shadowroot.innerHTML =`
+            <iframe class="spotify-iframe" 
+            width="100%" 
+            height="100%" 
+            src="https://open.spotify.com/embed/${this.type}/${this.id}" 
+            frameborder="0" 
+            allowtransparency="true" 
+            allow="encrypted-media"></iframe>
+        `;
+        if (type == "track"){
+            this.shadowRoot.innerHTML = `
+                <iframe class="spotify-iframe" 
+                width="70%" 
+                height="400" 
+                src="https://open.spotify.com/embed/${this.type}/${this.id}" 
+                frameborder="0" 
+                allowtransparency="true" 
+                allow="encrypted-media"></iframe>
+            `;
+        }
     }
 }
 customElements.define("my-frame",myframe);
@@ -70,14 +93,15 @@ const verAlbum = async (codeAlbum) => {
         const result = await response.json();
         const albums = result.albums.items;
         const dcAs = data.coverArt.sources;
-        const dai = data.artists.items
+        const dai = data.artists.items;
+        const pn = profile.name;
         listAlbum.innerHTM = '';
         for (let i = 0; i<albums.length; i++){
             const getImage = albums[i]?.dcAs[i]?.url;
             const firstImage = albums[i]?.dcAs[0]?.url;
             const imagen = getImage ?? firstImage;
             const nombre = albums[i].data.name;
-            const nombreArtista = albums[i].dai[i]?.profile.name ?? albums[i].dai[0]?.profile.name;
+            const nombreArtista = albums[i].dai[i]?.pn ?? albums[i].dai[0]?.pn;
             const fecha = albums[i].data.date.year;
             const uri = albums[i].data.uri;
 
