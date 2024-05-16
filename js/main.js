@@ -64,18 +64,20 @@ const verAlbum = async (codeAlbum) => {
             'Content-Type': 'application/json'
         }
     };
+    // se intenta usar los albumes
     try{
         const response = await fetch(url, options);
         const result = await response.json();
         const albums = result.albums.items;
         const dcAs = data.coverArt.sources;
+        const dai = data.artists.items
         listAlbum.innerHTM = '';
         for (let i = 0; i<albums.length; i++){
             const getImage = albums[i]?.dcAs[i]?.url;
             const firstImage = albums[i]?.dcAs[0]?.url;
             const imagen = getImage ?? firstImage;
             const nombre = albums[i].data.name;
-            const nombreArtista = albums[i].data.artists.items[i]?.profile.name ?? albums[i].data.artists.items[0]?.profile.name;
+            const nombreArtista = albums[i].dai[i]?.profile.name ?? albums[i].dai[0]?.profile.name;
             const fecha = albums[i].data.date.year;
             const uri = albums[i].data.uri;
 
@@ -153,43 +155,3 @@ try {
 } catch (error) {
 	console.error(error);
 }
-
-
-// try {
-// 	const response = await fetch(url, options);
-// 	const result = await response.json();
-//     let va = result.tracks.items
-//     console.log(tracks)
-//     for(let i = 0; i < 1000; i++){
-//         fetch (url)
-//         .then(response => response.json())
-//         .then(data => mostrarAlbum(data))
-//         let imagen = va[i]?.data.coverArt.sources[i]?.url ?? va[i]?.data.coverArt.sources[0]?.url;
-//         let nombre = va[i].data.name
-//         let nombreArtista = va[i].data.artists.items[i]?.profile.name ?? va[i].data.artists.items[0]?.profile.name;
-//         let fecha = va[i].data.date.year
-        
-//         const mostrarAlbum = async() => {
-//             const div = document.createElement("div");
-//             div.classList.add("album")
-//             div.innerHTML = `
-//             <div class="album">
-//                 <div class="album_order">
-//                     <div class="imagen_album">
-//                         <img src="${imagen}" alt="" class="portada">
-//                     </div>
-//                     <div class="info_album">
-//                         <h3>${nombre}</h3>
-//                         <p>${nombreArtista}</p>
-//                         <p>${fecha}</p>
-//                     </div>
-//                 </div>
-//             </div>`;
-//             listAlbum.append(div);
-//         }
-//         if(imagen){
-//         }
-//     }
-// } catch (error) {
-// 	console.error(error);
-// }
