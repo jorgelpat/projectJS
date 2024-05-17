@@ -123,7 +123,7 @@ const verAlbum = async (codeAlbum) => {
             `;
             // let divClassAlbumes = document.querySelector(".albumes")
             listAlbum.append(div);
-            div.querySelector('album_order').addEventListener('click', async()=>{
+            div.querySelector('.album_order').addEventListener('click', async()=>{
                 await playFirstTrack(uri);
                 lookingTracks(uri);
             });
@@ -202,9 +202,7 @@ const lookingTracks = async(albumUri)=>{
 }
 
 
-const listAlbum = document.querySelector('.albumes');
-const listarTrack = document.querySelector('.listarTrack');
-const listarPlaylist = document.querySelector('#playlist'); // falta agregar al html
+
 
 
 const urlRecom = `https://spotify23.p.rapidapi.com/recommendations/?limit=20&seed_tracks=0c6xIDDpzE81m2q797ordA&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry`;
@@ -293,3 +291,7 @@ try{
 } catch (error) {
     console.error(error);
 }
+
+const listAlbum = document.querySelector('.albumes');   // falta agregar al html
+const listarTrack = document.querySelector('.listarTrack');
+const listarPlaylist = document.querySelector('#playlist'); 
