@@ -1,8 +1,10 @@
-class myframe extends HTMLElement{
-    id
-    constructor(id){
+class Myframe extends HTMLElement{
+    
+    constructor(){
         super();
         this.attachShadow({mode: "open"});
+        this.id = '';
+        this.type = '';
     }
     connectedCallback(){
         this.shadowRoot.innerHTML = /*html*/`
@@ -13,18 +15,18 @@ class myframe extends HTMLElement{
             frameborder="0" 
             allowtransparency="true" 
             allow="encrypted-media"></iframe>
-        `
+        `;
     }
     static get observedAttributes(){
         return ["uri"];
     }
     attributeChangedCallback(name,old,now){
         let[, , id] = now.split(":");
-        const uri = this.getAtribute("uri");
+        const uri = this.getAttribute("uri");
         const type = uri.split(":")[1];
         this.type = type;
         this.id = id;
-        this.shadowroot.innerHTML =`
+        this.shadowRoot.innerHTML =`
             <iframe class="spotify-iframe" 
             width="100%" 
             height="100%" 
@@ -46,7 +48,7 @@ class myframe extends HTMLElement{
         }
     }
 }
-customElements.define("my-frame",myframe);
+customElements.define("my-frame",Myframe);
 
 // let listAlbum = document.querySelector("#listAlbum");
 let searchInput = document.querySelector("#searchInput");
@@ -92,16 +94,16 @@ const verAlbum = async (codeAlbum) => {
         const response = await fetch(url, options);
         const result = await response.json();
         const albums = result.albums.items;
-        const dcAs = data.coverArt.sources;
-        const dai = data.artists.items;
-        const pn = profile.name;
+        // const dcAs = data.coverArt.sources;
+        // const dai = data.artists.items;
+        // const pn = profile.name;
         listAlbum.innerHTML = '';
         for (let i = 0; i<albums.length; i++){
-            const getImage = albums[i]?.dcAs[i]?.url;
-            const firstImage = albums[i]?.dcAs[0]?.url;
+            const getImage = albums[i]?.data.coverArt.sources[i]?.url;
+            const firstImage = albums[i]?.data.coverArt.sources[0]?.url;
             const imagen = getImage ?? firstImage;
             const nombre = albums[i].data.name;
-            const nombreArtista = albums[i].dai[i]?.pn ?? albums[i].dai[0]?.pn;
+            const nombreArtista = albums[i].data.artists.items[i]?.profile.name ?? albums[i].data.artists.items[0]?.profile.name;
             const fecha = albums[i].data.date.year;
             const uri = albums[i].data.uri;
 
@@ -120,19 +122,19 @@ const verAlbum = async (codeAlbum) => {
                 </div>
             `;
             // let divClassAlbumes = document.querySelector(".albumes")
-            divClassAlbumes.append(div);
+            listAlbum.append(div);
             div.querySelector('album_order').addEventListener('click', async()=>{
-                await reprFirstTrack(uri);
+                await playFirstTrack(uri);
                 lookingTracks(uri);
             });
         }
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
 }
 
 
-reprFirstTrack = async (albumUri) => {
+const playFirstTrack = async (albumUri) => {
     let albumId = albumUri.split(":")[2];
     let url = `https://spotify23.p.rapidapi.com/albums/?ids=${albumId}`;
     const options = {
@@ -156,7 +158,7 @@ reprFirstTrack = async (albumUri) => {
 
 
 
-lookingTracks = async(albumUri)=>{
+const lookingTracks = async(albumUri)=>{
     let albumId = albumUri.split[2];
     let url = `https://spotify23.p.rapidapi.com/albums/?ids=${albumId}`;
     const options = {
@@ -219,10 +221,10 @@ try {
     const response = await fetch(urlRecom, optionsRecom);
     const result = await response.json();
     const tracks = result.tracks;
-    const ai = album.images;
+    // let ai = album.images;
     for (let i = 0;i<10;i++){
-        const img = tracks[i]?.ai[0]?.url;
-        const img2 = tracks[i]?.ai[i]?.url;
+        const img = tracks[i]?.album.images[0]?.url;
+        const img2 = tracks[i]?.album.images[i]?.url;
         const imagen = img ?? img2;
         const nombre = tracks[i].name;
         const nombreArtista = tracks[i].artists[0].name;
