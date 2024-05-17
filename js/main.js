@@ -156,7 +156,7 @@ reprFirstTrack = async (albumUri) => {
 
 
 
-lookingTracks = async(albumUri){
+lookingTracks = async(albumUri)=>{
     let albumId = albumUri.split[2];
     let url = `https://spotify23.p.rapidapi.com/albums/?ids=${albumId}`;
     const options = {
@@ -202,6 +202,95 @@ lookingTracks = async(albumUri){
 
 const listAlbum = document.querySelector('.albumes');
 const listarTrack = document.querySelector('.listarTrack');
+const listarPlaylist = document.querySelector('#playlist'); // falta agregar al html
+
+
+const urlRecom = `https://spotify23.p.rapidapi.com/recommendations/?limit=20&seed_tracks=0c6xIDDpzE81m2q797ordA&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry`;
+const optionsRecom = {
+    method: 'GET',
+    headers: {
+        'X-RapidAPI-Key': '344560f223msh07d868d593e096bp1a2c08jsnaa43079d40fd',
+        'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
+    }
+};
+
+
+try {
+    const response = await fetch(urlRecom, optionsRecom);
+    const result = await response.json();
+    const tracks = result.tracks;
+    const ai = album.images;
+    for (let i = 0;i<10;i++){
+        const img = tracks[i]?.ai[0]?.url;
+        const img2 = tracks[i]?.ai[i]?.url;
+        const imagen = img ?? img2;
+        const nombre = tracks[i].name;
+        const nombreArtista = tracks[i].artists[0].name;
+        const uri = tracks[i].uri;
+
+        const div = document.createElement("div");
+        div.classList.add("track_Recommendations");
+        div.innerHTML = `
+            <div class="track_order" data-id="${uri}">
+                <div class="imagen_track">
+                    <img src="${imagen}" alt="" class="portada">
+                </div>
+                <div class="info_track">
+                    <h3>${nombre}</h3>
+                    <p>${nombreArtista}</p>
+                </div>
+            </div>
+        `;
+        listarTrack.append(div);
+        div.querySelector('.track_order').addEventListener('click',()=>{
+            const frame = document.querySelector("my-frame");
+            frame.setAttribute("uri",uri);
+        });
+    }
+} catch (error){
+    console.error(error);
+}
+
+const urlPlaylists = 'https://spotify23.p.rapidapi.com/playlist_tracks/?id=37i9dQZF1DX4Wsb4d7NKfP&offset=0&limit=100';
+const optionsPlaylists = {
+    method: 'GET',
+    headers: {
+        'X-RapidAPI-Key': '344560f223msh07d868d593e096bp1a2c08jsnaa43079d40fd',
+        'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
+    }
+};
+
+try{
+    const response = await fetch(urlPlaylists, optionsPlaylists);
+    const result = await response.json();
+    const playlist = result.items;
+    for (let i=0;i<10;i++){
+        const img = playlist[i]?.track.album?.images[0].url;
+        const imagen = img;
+        const nombre = playlist[i].track.album.name;
+        const uri = playlist[i].track.album.uri;
+
+        const div = document.createElement("div");
+        div.classList.add("playlist");
+        div.innerHTML = `
+            <div class="track_order" data-id="${uri}">
+                <div class="imagen_playlist">
+                    <img src="${imagen}" alt="" class="portada">
+                </div>
+                <div class="info_track">
+                    <h3>${nombre}</h3>
+                </div>
+            </div>
+        `;
+        listarPlaylist.append(div);
+        div.querySelector('.track_order').addEventListener('click', () => {
+            const frame = document.querySelector("my-frame");
+            frame.setAttribute("uri", uri);
+        });
+    }
+} catch (error) {
+    console.error(error);
+}
 
 
             // const albumes = document.createElement("div");
