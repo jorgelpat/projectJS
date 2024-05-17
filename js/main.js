@@ -80,11 +80,11 @@ searchInput.addEventListener('keypress',(e) =>{
 });
 
 const verAlbum = async (codeAlbum) => {
-    let url = 'https://potify23.p.rapidapi.com/search/?type=multi&offset=0&limit=10&numberOfTopResults=5';
+    let url = 'https://spotify23.p.rapidapi.com/search/?type=multi&offset=0&limit=10&numberOfTopResults=5';
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '344560f223msh07d868d593e096bp1a2c08jsnaa43079d40fd',
+            'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
             'Content-Type': 'application/json'
         }
@@ -140,7 +140,7 @@ const playFirstTrack = async (albumUri) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '344560f223msh07d868d593e096bp1a2c08jsnaa43079d40fd',
+            'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
         }
     };
@@ -164,7 +164,7 @@ const lookingTracks = async(albumUri)=>{
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '344560f223msh07d868d593e096bp1a2c08jsnaa43079d40fd',
+            'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
         }
     };
@@ -211,7 +211,7 @@ const urlRecom = `https://spotify23.p.rapidapi.com/recommendations/?limit=20&see
 const optionsRecom = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '344560f223msh07d868d593e096bp1a2c08jsnaa43079d40fd',
+        'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
         'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
     }
 };
@@ -257,7 +257,7 @@ const urlPlaylists = 'https://spotify23.p.rapidapi.com/playlist_tracks/?id=37i9d
 const optionsPlaylists = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '344560f223msh07d868d593e096bp1a2c08jsnaa43079d40fd',
+        'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
         'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
     }
 };
