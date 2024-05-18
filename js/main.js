@@ -50,6 +50,10 @@ class Myframe extends HTMLElement{
 }
 customElements.define("my-frame",Myframe);
 
+const listAlbum = document.querySelector('.albumes');   // falta agregar al html
+const listarTrack = document.querySelector('.listarTrack');
+const listarPlaylist = document.querySelector('#playlist'); 
+
 // let listAlbum = document.querySelector("#listAlbum");
 let searchInput = document.querySelector("#searchInput");
 let searchButton = document.querySelector("#searchButton");
@@ -292,6 +296,3 @@ try{
     console.error(error);
 }
 
-const listAlbum = document.querySelector('.albumes');   // falta agregar al html
-const listarTrack = document.querySelector('.listarTrack');
-const listarPlaylist = document.querySelector('#playlist'); 
