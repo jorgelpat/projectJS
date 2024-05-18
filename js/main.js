@@ -80,13 +80,13 @@ searchInput.addEventListener('keypress',(e) =>{
 });
 
 const verAlbum = async (codeAlbum) => {
-    let url = 'https://spotify23.p.rapidapi.com/search/?type=multi&offset=0&limit=10&numberOfTopResults=5';
+    let url = `https://spotify23.p.rapidapi.com/search/?q=${codeAlbum}&type=albums&offset=0&limit=10&numberOfTopResults=5`;
     const options = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
-            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/json'
         }
     };
     // se intenta usar los albumes
