@@ -7,7 +7,7 @@ class Myframe extends HTMLElement{
         this.type = '';
     }
     connectedCallback(){
-        this.shadowRoot.innerHTML = /*html*/`
+        this.shadowRoot.innerHTML = `
             <iframe class="spotify-iframe" 
             width="454" 
             height="690" 

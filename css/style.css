@@ -118,3 +118,14 @@
     height: 30vh;
     font-size: .7rem;
 }
+
+
+.imagen_album img{
+    border-radius: 10%;
+    width: 80%;
+    object-fit: contain;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
