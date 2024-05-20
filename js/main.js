@@ -175,10 +175,10 @@ const lookingTracks = async(albumUri)=>{
     try {
         const response = await fetch(url,options);
         const result =await response.json();
-        const tracks = result.albums[0].tracks.items;
+        // const tracks = result.albums[0].tracks.items;
         listarTrack.innerHTML = '';
-        for (let i=0; i<tracks.length;i++){
-            const track = tracks[i];
+        for (let i=0; i<result.albums[0].tracks.items.length;i++){
+            const track = result.albums[0].tracks.items[i];
             const nombre = track.name;
             const nombreArtista = track.artists[0].name;
             const uri = track.uri;
