@@ -234,3 +234,23 @@ my-frame{
     justify-content: center;
 }
 
+.listarTrack{
+    padding: 2%;
+    height: 70vh;
+    border-radius: 25px;
+    overflow: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-gap: 2%;
+}
+
+.trackslists{
+    height: 68vh;
+    padding: 2%;
+    border-radius: 25px;
+    background: var(--clr-gray);
+}
+
+
