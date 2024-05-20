@@ -50,13 +50,16 @@ class Myframe extends HTMLElement{
 }
 customElements.define("my-frame",Myframe);
 
-const listAlbum = document.querySelector('.albumes');   // falta agregar al html
+
+//------------------------------------------------------------------------------------------------
+const listAlbum = document.querySelector('.albumes');
 const listarTrack = document.querySelector('.listarTrack');
 const listarPlaylist = document.querySelector('#playlist'); 
 
 // let listAlbum = document.querySelector("#listAlbum");
 let searchInput = document.querySelector("#searchInput");
 let searchButton = document.querySelector("#searchButton");
+//-------------------------------------------------------------------------------------------------
 
 let codeAlbum = "%3CREQUIRED%3E";
 document.addEventListener('DOMContentLoaded',() =>{
@@ -161,49 +164,48 @@ const playFirstTrack = async (albumUri) => {
 }
 
 
+// Es necesario revisar
+// const lookingTracks = async(albumUri)=>{
+//     let albumId = albumUri.split[2];
+//     let url = `https://spotify23.p.rapidapi.com/albums/?ids=${albumId}`;
+//     const options = {
+//         method: 'GET',
+//         headers: {
+//             'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
+//             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
+//         }
+//     };
+//     try {
+//         const response = await fetch(url,options);
+//         const result =await response.json();
+//         // const tracks = result.albums[0].tracks.items;
+//         listarTrack.innerHTML = '';
+//         for (let i=0; i<result.albums[0].tracks.items.length;i++){
+//             const track = result.albums[0].tracks.items[i];
+//             const nombre = track.name;
+//             const nombreArtista = track.artists[0].name;
+//             const uri = track.uri;
 
-const lookingTracks = async(albumUri)=>{
-    let albumId = albumUri.split[2];
-    let url = `https://spotify23.p.rapidapi.com/albums/?ids=${albumId}`;
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
-            'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
-        }
-    };
-    try {
-        const response = await fetch(url,options);
-        const result =await response.json();
-        // const tracks = result.albums[0].tracks.items;
-        listarTrack.innerHTML = '';
-        for (let i=0; i<result.albums[0].tracks.items.length;i++){
-            const track = result.albums[0].tracks.items[i];
-            const nombre = track.name;
-            const nombreArtista = track.artists[0].name;
-            const uri = track.uri;
-
-            const div = document.createElement("div");
-            div.classList.add("track");
-            div.innerHTML = `
-                <div class="trackOrder" data-id="${uri}">
-                    <div class="info_track">
-                        <h3>${nombre}</h3>
-                        <p>${nombreArtista}</p>
-                    </div>
-                </div>
-
-            `;
-            listarTrack.append(div);
-            div.querySelector('.trackOrder').addEventListener('click',()=>{
-                const frame = document.querySelector("my-frame");
-                frame.setAttribute("uri",uri);
-            });
-        }
-    } catch(error){
-        console.error(error);
-    }
-}
+//             const div = document.createElement("div");
+//             div.classList.add("track");
+//             div.innerHTML = `
+//                 <div class="track_order" data-id="${uri}">
+//                     <div class="info_track">
+//                         <h3>${nombre}</h3>
+//                         <p>${nombreArtista}</p>
+//                     </div>
+//                 </div>
+//             `;
+//             listarTrack.append(div);
+//             div.querySelector('.track_order').addEventListener('click',()=>{
+//                 const frame = document.querySelector("my-frame");
+//                 frame.setAttribute("uri",uri);
+//             });
+//         }
+//     } catch(error){
+//         console.error(error);
+//     }
+// }
 
 
 
