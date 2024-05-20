@@ -213,3 +213,23 @@ my-frame{
     height: 100%;
 }
 
+.play{
+    padding: 2%;
+    height: 20vh;
+    width: 100%;
+    border-radius: 25px;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-gap: 10%;
+}
+
+.info_track{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+}
+
+
