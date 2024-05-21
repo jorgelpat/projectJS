@@ -9,8 +9,8 @@ class Myframe extends HTMLElement{
     connectedCallback(){
         this.shadowRoot.innerHTML = `
             <iframe class="spotify-iframe" 
-            width="454" 
-            height="690" 
+            width="100%" 
+            height="100%" 
             src="https://open.spotify.com/embed/album/${this.id}" 
             frameborder="0" 
             allowtransparency="true" 
@@ -91,7 +91,7 @@ const verAlbum = async (codeAlbum) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
+            'X-RapidAPI-Key': 'f0e807b300mshfa1af2e2a67a5b7p19ef17jsnbadc81a2c51f',
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
             // 'Content-Type': 'application/json'
         }
@@ -147,7 +147,7 @@ const playFirstTrack = async (albumUri) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
+            'X-RapidAPI-Key': 'f0e807b300mshfa1af2e2a67a5b7p19ef17jsnbadc81a2c51f',
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
         }
     };
@@ -155,67 +155,20 @@ const playFirstTrack = async (albumUri) => {
         const response = await fetch(url, options);
         const result = await response.json();
         const tracks = result.albums[0].tracks.items;
-        const uri = tracks[0]?.uri; // URI del primer track
+        const uri = tracks[0]?.uri;
         const frame = document.querySelector("my-frame");
-        frame.setAttribute("uri", uri); // Establecer la URI del primer track
+        frame.setAttribute("uri", uri);
     } catch(error){
         console.error(error);
     }
 }
 
 
-// Es necesario revisar
-// const lookingTracks = async(albumUri)=>{
-//     let albumId = albumUri.split[2];
-//     let url = `https://spotify23.p.rapidapi.com/albums/?ids=${albumId}`;
-//     const options = {
-//         method: 'GET',
-//         headers: {
-//             'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
-//             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
-//         }
-//     };
-//     try {
-//         const response = await fetch(url,options);
-//         const result =await response.json();
-//         // const tracks = result.albums[0].tracks.items;
-//         listarTrack.innerHTML = '';
-//         for (let i=0; i<result.albums[0].tracks.items.length;i++){
-//             const track = result.albums[0].tracks.items[i];
-//             const nombre = track.name;
-//             const nombreArtista = track.artists[0].name;
-//             const uri = track.uri;
-
-//             const div = document.createElement("div");
-//             div.classList.add("track");
-//             div.innerHTML = `
-//                 <div class="track_order" data-id="${uri}">
-//                     <div class="info_track">
-//                         <h3>${nombre}</h3>
-//                         <p>${nombreArtista}</p>
-//                     </div>
-//                 </div>
-//             `;
-//             listarTrack.append(div);
-//             div.querySelector('.track_order').addEventListener('click',()=>{
-//                 const frame = document.querySelector("my-frame");
-//                 frame.setAttribute("uri",uri);
-//             });
-//         }
-//     } catch(error){
-//         console.error(error);
-//     }
-// }
-
-
-
-
-
 const urlRecom = `https://spotify23.p.rapidapi.com/recommendations/?limit=20&seed_tracks=0c6xIDDpzE81m2q797ordA&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry`;
 const optionsRecom = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
+        'X-RapidAPI-Key': 'f0e807b300mshfa1af2e2a67a5b7p19ef17jsnbadc81a2c51f',
         'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
     }
 };
@@ -261,7 +214,7 @@ const urlPlaylists = 'https://spotify23.p.rapidapi.com/playlist_tracks/?id=37i9d
 const optionsPlaylists = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '916a4690aamshc6c4dcba7679598p145052jsn21e15646bc4c',
+        'X-RapidAPI-Key': 'f0e807b300mshfa1af2e2a67a5b7p19ef17jsnbadc81a2c51f',
         'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
     }
 };
