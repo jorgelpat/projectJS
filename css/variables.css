@@ -1,7 +1,7 @@
 :root{
-    --clr-green-primary: #1db954;
-    --clr-green-secondary: #1ed760;
-    --clr-black: #191414;
+    --clr-red-primary: #c71b1b;
+    --clr-red-secondary: #690505;
+    --clr-black: #0f0c0c;
     --clr-white: #fff;
     --clr-gray: rgba(105, 102, 102, 0.267);
 }
